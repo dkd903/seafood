@@ -25,6 +25,7 @@ $( document ).ready(function() {
 		} )
 		.always( function() {
 			console.log( "Request for data.json complete" );
+			$( '.loading' ).hide();
 		} );
     } else {
 
@@ -75,6 +76,8 @@ $( document ).ready(function() {
     	// build price data from seafood data
         var jsonData = [];
         var firstWeek = seafoodData[value].firstWeek, //TODO: null guard
+        	firstYear = seafoodData[value].firstYear,
+        	firstYearEnd = firstYear,
         	specie = seafoodData[value].specie,
         	origin = seafoodData[value].origin,
         	pricingUnit = seafoodData[value].caption;
@@ -85,6 +88,13 @@ $( document ).ready(function() {
 
         // TODO: null guard for seafoodData[value].prices
 		$.each(seafoodData[value].prices, function(i, item) {
+			// perform week calulcations for bigger data sets
+		    if ( firstWeek > 52 ) {
+				firstYearEnd += 1;
+		    	firstWeek = 1;
+		    }
+
+		    // push the data to data array
 		    jsonData.push( { "WeekNo": firstWeek, "Price": item } );
 		    firstWeek += 1;
 		    if ( item > maxPrice ) {
@@ -139,7 +149,7 @@ $( document ).ready(function() {
          .append("text")
             .attr("x", svgWidth / 2 - widthPad)
             .attr("y", 50)
-            .text("Week");
+            .text("Week " + (firstYearEnd == firstYear ? firstYear : firstYear + " - " + firstYearEnd));
 
         // Y axis
         var yAxis = d3.svg.axis()
