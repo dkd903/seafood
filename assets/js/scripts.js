@@ -3,7 +3,7 @@
 "use strict";
 $( document ).ready(function() {
     /* Contants - ideally this would come from a serverside constant variable and be read by JavaScript */
-    var baseUrl = 'http://wp48.wp/seafood/seafood'; // eg. http://wp48.wp/seafood/seafood
+    var baseUrl = ''; // eg. http://wp48.wp/seafood/seafood
 
     if ( baseUrl.length !== 0 ) {
 
