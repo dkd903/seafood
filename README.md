@@ -16,7 +16,7 @@ About Code -
 
 3. There are some null guards that could be added in the code in script.js - I have left TODOs in comments.
 
-4. General optimisations and checks for JSON property handling could have been added, given the time.
+4. General optimisations (for things like D3 init and the d3 axis data json generation, etc.) and checks for JSON property handling could have been added, given the time.
 
 Where was the time spent - 
 
